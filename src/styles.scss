@@ -126,6 +126,19 @@ mat-card:not(.dashboard-card) {
   }
 }
 
+.lessons-containers {
+  display: flex;
+  justify-content: space-around;
+
+  .lessons-list {
+    width: 49%;
+  }
+
+  .lesson-details {
+    width: 49%;
+  }
+}
+
 .login-container {
   display: flex;
   align-items: center;
