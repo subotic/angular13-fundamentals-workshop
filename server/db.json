@@ -1,11 +1,38 @@
 {
   "courses": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Angular 13 Fundamentals",
       "description": "Learn the fundamentals of Angular 13",
-      "percentComplete": 26,
+      "percentComplete": 90,
       "favorite": true
+    },
+    {
+      "id": "2",
+      "title": "Angular 14 Fundamentals",
+      "description": "Learn the fundamentals of Angular 14",
+      "percentComplete": 46,
+      "favorite": true
+    },
+    {
+      "id": "3",
+      "title": "Angular 15 Fundamentals",
+      "description": "Learn the fundamentals of Angular 15",
+      "percentComplete": 56,
+      "favorite": true
+    },
+    {
+      "id": "4",
+      "title": "Angular 16 Fundamentals",
+      "description": "Learn the fundamentals of Angular 16",
+      "percentComplete": 66,
+      "favorite": true
+    }
+  ],
+  "lessons": [
+    {
+      "id": "1",
+      "title": "Component Driven Architecture"
     }
   ]
 }

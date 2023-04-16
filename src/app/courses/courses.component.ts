@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Course} from "../common/models/course";
 import {stringify} from "@angular/compiler/src/util";
+import {CoursesService} from "../common/services/courses.service";
 
 
 const emptyCourse: Course = {
@@ -22,36 +23,15 @@ export class CoursesComponent implements OnInit {
     // 2. Select a course
     // 3. Render selected courses
 
-    courses : Course[] = [
-        {
-            id: '1',
-            title: 'Angular 13 Fundamentals',
-            description: 'Learn the fundamentals of Angular 13',
-            percentComplete: 26,
-            favorite: true
-        },
-        {
-            id: '2',
-            title: 'Angular 14 Fundamentals',
-            description: 'Learn the fundamentals of Angular 14',
-            percentComplete: 29,
-            favorite: true
-        },
-        {
-            id: '3',
-            title: 'Angular 15 Fundamentals',
-            description: 'Learn the fundamentals of Angular 15',
-            percentComplete: 37,
-            favorite: true
-        }
-    ];
+    courses : Course[]
 
     selectedCourse = emptyCourse;
 
-    constructor() {
+    constructor(private coursesService: CoursesService) {
     }
 
     ngOnInit(): void {
+       this.fetchCourses()
     }
 
     selectCourse(course: Course) {
@@ -62,12 +42,36 @@ export class CoursesComponent implements OnInit {
         this.selectCourse({...emptyCourse})
     }
 
-    deleteCourse(courseId: String) {
-        console.log("DELETE COURSE:", courseId);
+    fetchCourses() {
+        this.coursesService.getAll()
+            .subscribe((courses: any) => this.courses = courses)
     }
 
     saveCourse(course: Course) {
-        console.log("SAVE COURSE:", course);
+        if(course.id) {
+            // update
+            this.updateCourse(course);
+        } else {
+            // create
+            this.createCourse(course);
+        }
     }
+
+    updateCourse(course: Course) {
+        this.coursesService.update(course)
+            .subscribe(result => this.fetchCourses());
+    }
+
+    createCourse(course: Course) {
+        this.coursesService.create(course)
+            .subscribe(result => this.fetchCourses());
+    }
+
+    deleteCourse(courseId: string) {
+        this.coursesService.delete(courseId)
+            .subscribe(result => this.fetchCourses())
+    }
+
+
 
 }
