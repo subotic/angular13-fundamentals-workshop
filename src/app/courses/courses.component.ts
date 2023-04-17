@@ -35,7 +35,7 @@ export class CoursesComponent implements OnInit {
     }
 
     selectCourse(course: Course) {
-        this.selectedCourse = {...course};
+        this.selectedCourse = course;
     }
 
     removeCourseSelection() {
